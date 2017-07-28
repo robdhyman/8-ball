@@ -33,8 +33,9 @@ var answers = [
     'Better not tell you now',
     'It\'s.... Complicated',
 ];
-var answer;
 var question = 'Hello, what would you ask of the 8-ball?';
+var answer;
+var fortune;
 
 var bot = new builder.UniversalBot(connector, function (session) {
     var message = session.message.text;
@@ -66,7 +67,10 @@ bot.dialog('ask', [
     function (session, results) {
 
         answer = answers[Math.floor(Math.random() * answers.length)];
-        builder.Prompts.text(session, 'Hmmm... ' + answer
+        builder.Prompts.text(session, 'Hmmm... ' + answer,
+            {
+                speak: 'Hmmm... ' + answer,
+            }
         );
 
     },
@@ -109,7 +113,11 @@ bot.dialog('fortune', [
     function (session, results) {
         //builder.Prompts.number(session, 'Hmmm... ' + results.response);
         answer = answers[Math.floor(Math.random() * answers.length)];
-        builder.Prompts.text(session, 'Hmmm... ' + answer);
+        builder.Prompts.text(session, 'Hmmm... ' + answer,
+            {
+                speak: 'Hmmm... ' + answer
+            }
+        );
 
     },
 
