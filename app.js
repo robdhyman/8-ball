@@ -54,16 +54,33 @@ bot.dialog('ask', [
 
     //
     function (session) {
-        builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
+        builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
+            {
+                speak: 'Hello, what outcome should 8-ball predict?',
+                retrySpeak: 'Hello, please ask the 8-ball to predict an outcome',
+                inputHint: builder.InputHint.expectingInput
+            });
+
+
     }
 
     function (session, results) {
-        session.endDialog('Your fortune:', results.response);
+        if (!result.response) {
+            // exhausted attemps and no selection, start over
+            session.send('Sorry, I need you to ask your fortune!');
+            return session.endDialog();
+        }
+
+        // on error, start over
+        session.on('error', function (err) {
+            session.send('Failed with message: %s', err.message);
+            session.endDialog();
+        });
+
+        //session.endDialog('Your fortune:', results.response);
     }
 
-
 ]);
-
 
 bot.dialog('fortune', [
   
