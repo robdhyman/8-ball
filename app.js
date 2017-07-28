@@ -17,17 +17,6 @@ var connector = new builder.ChatConnector({
 });
 server.post('/api/messages', connector.listen());
 
-var userStore = [];
-var bot = new builder.UniversalBot(connector, function (session) {
-
-
-    // store user's address
-    //var address = session.message.address;
-    //userStore.push(address);
-
-    // end current dialog
-    session.send('You\'ve activated the 8-Ball, we will predict your future shortly...');
-});
 
 // array of 8-ball answers, why are there so many more than eight?
 var answers = [
@@ -44,8 +33,20 @@ var answers = [
     'Better not tell you now',
     'It\'s.... Complicated',
 ];
-
 var answer;
+
+var userStore = [];
+var bot = new builder.UniversalBot(connector, function (session) {
+
+    var x = (Math.random() * answers.length) - 1;
+
+    // end current dialog
+    session.send('You\'ve activated the 8-Ball, we will predict your future shortly...');
+    session.send(answers[x]);
+});
+
+
+
 
 // Every 5 seconds, check for new registered users and start a new dialog
 setInterval(function () {
