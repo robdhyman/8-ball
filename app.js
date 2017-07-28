@@ -52,7 +52,14 @@ var bot = new builder.UniversalBot(connector, function (session) {
 bot.dialog('ask', [
 
     function (session) {
-         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
+         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
+                {
+                speak: 'Hello, what outcome should 8-ball predict?',
+                retrySpeak: 'Hello, please ask the 8-ball to predict an outcome',
+                inputHint: builder.InputHint.expectingInput
+                }
+         );
+
      },
 
      
@@ -62,10 +69,12 @@ bot.dialog('ask', [
     /**
     function (session) {
         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
-    
+                
+                {
                 speak: 'Hello, what outcome should 8-ball predict?',
                 retrySpeak: 'Hello, please ask the 8-ball to predict an outcome',
                 inputHint: builder.InputHint.expectingInput
+                }
           
             );}
 
