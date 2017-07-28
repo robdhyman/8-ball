@@ -75,7 +75,9 @@ bot.dialog('ask', [
 
     },
     function (session, results) {
-        session.endDialog('Thank you for asking the 8-ball!');
+        //session.endDialog('Thank you for asking the 8-ball!');
+        session.say('Thank you for asking the 8-ball!', 'Thank you for asking the 8-ball!');
+        session.endDialog();
     },
     /**
     function (session) {
@@ -123,7 +125,9 @@ bot.dialog('fortune', [
 
     // this funciton to be replaced by more robust solution in comment above
    function (session, results) {
-        session.endDialog('Thank you for asking the 8-ball!');
+        //session.endDialog('Thank you for asking the 8-ball!');
+        session.say('Thank you for asking the 8-ball!', 'Thank you for asking the 8-ball!');
+        session.endDialog();
     },
 
 
