@@ -77,6 +77,7 @@ bot.dialog('ask', [
     function (session, results) {
         //session.endDialog('Thank you for asking the 8-ball!');
         session.say('Thank you for asking the 8-ball!', 'Thank you for asking the 8-ball!');
+        session.say('Ask for another fortune if you like.', 'Ask for another fortune if you like.');
         session.endDialog();
     },
     /**
@@ -115,20 +116,24 @@ bot.dialog('fortune', [
     function (session, results) {
         //builder.Prompts.number(session, 'Hmmm... ' + results.response);
         answer = answers[Math.floor(Math.random() * answers.length)];
-        builder.Prompts.text(session, 'Hmmm... ' + answer,
+        session.say('Hmmm... ' + answer, 'Hmmm... ' + answer);
+        session.say('Ask another if you like!', 'Ask another if you like!');
+        session.endDialog();
+
+/**        builder.Prompts.text(session, 'Hmmm... ' + answer,
             {
                 speak: 'Hmmm... ' + answer
             }
         );
-
+**/
     },
-
-    // this funciton to be replaced by more robust solution in comment above
+    /**
    function (session, results) {
         //session.endDialog('Thank you for asking the 8-ball!');
         session.say('Thank you for asking the 8-ball!', 'Thank you for asking the 8-ball!');
         session.endDialog();
     },
+    **/
 
 
 ]);
