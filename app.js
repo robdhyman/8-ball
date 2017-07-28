@@ -35,7 +35,6 @@ var answers = [
 ];
 var answer;
 
-var userStore = [];
 var bot = new builder.UniversalBot(connector, function (session) {
     var message = session.message.text;
     if (message) {
@@ -71,16 +70,9 @@ bot.dialog('fortune', [
 
     },
 
-    /**
-    *   Here's where I'd implement sentiment analysis to give a more robust 
-    *   array of responses (i.e. "Would you like to shake the 8-ball again?", 
-    *   "Sorry for the bad news", or "Congratulations!", etc);
-    **/
-
-
     // this funciton to be replaced by more robust solution in comment above
    function (session, results) {
-        session.endDialog('Ask another?');
+        session.endDialog('Ask 8-ball for a fortune!');
     },
 
 
