@@ -55,6 +55,10 @@ bot.dialog('ask', [
          builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
      },
 
+     
+    function (session, results) {
+        session.endDialog('Not sure...');
+    },
     /**
     function (session) {
         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
