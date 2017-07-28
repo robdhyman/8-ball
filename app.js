@@ -34,6 +34,7 @@ var answers = [
     'It\'s.... Complicated',
 ];
 var answer;
+//var question = 'Hello, what would you ask of the 8-ball?';
 
 var bot = new builder.UniversalBot(connector, function (session) {
     var message = session.message.text;
@@ -54,7 +55,7 @@ bot.dialog('ask', [
     function (session) {
          builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
                 {
-                speak: 'Hello, what outcome should 8-ball predict?',
+                speak: 'Hello, what would you ask of the 8-ball?',
                 retrySpeak: 'Hello, please ask the 8-ball to predict an outcome',
                 inputHint: builder.InputHint.expectingInput
                 }
@@ -62,9 +63,17 @@ bot.dialog('ask', [
 
      },
 
-     
     function (session, results) {
-        session.endDialog('Not sure...');
+        //builder.Prompts.number(session, 'Hmmm... ' + results.response);
+        answer = answers[Math.floor(Math.random() * answers.length)];
+        builder.Prompts.text(session, 'Hmmm... ' + answer
+
+
+        );
+
+    },
+    function (session, results) {
+        session.endDialog('Thank you for asking the 8-ball!');
     },
     /**
     function (session) {
@@ -108,7 +117,7 @@ bot.dialog('fortune', [
 
     // this funciton to be replaced by more robust solution in comment above
    function (session, results) {
-        session.endDialog('Ask 8-ball for a fortune!');
+        session.endDialog('Thank you for asking the 8-ball!');
     },
 
 
