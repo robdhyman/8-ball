@@ -50,19 +50,20 @@ var bot = new builder.UniversalBot(connector, function (session) {
 });
 
 bot.dialog('ask', [
-    //"Cortana, open 8-ball"
 
-    //
+    function (session) {
+         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
+     },
+
+    /**
     function (session) {
         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?',
-            {
+    
                 speak: 'Hello, what outcome should 8-ball predict?',
                 retrySpeak: 'Hello, please ask the 8-ball to predict an outcome',
                 inputHint: builder.InputHint.expectingInput
-            });
-
-
-    }
+          
+            );}
 
     function (session, results) {
         if (!result.response) {
@@ -77,9 +78,8 @@ bot.dialog('ask', [
             session.endDialog();
         });
 
-        //session.endDialog('Your fortune:', results.response);
-    }
-
+        session.endDialog('Your fortune:', results.response);
+    **/
 ]);
 
 bot.dialog('fortune', [
