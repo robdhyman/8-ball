@@ -37,40 +37,8 @@ var answer;
 
 var userStore = [];
 var bot = new builder.UniversalBot(connector, function (session) {
-
-    var x = (Math.random() * answers.length) - 1;
-
-    // end current dialog
-    session.send('You\'ve activated the 8-Ball, we will predict your future shortly...');
-    session.send('It is certain');
+    session.beginDialog("survey");
 });
-
-
-
-
-// Every 5 seconds, check for new registered users and start a new dialog
-setInterval(function () {
-    var newAddresses = userStore.splice(0);
-    newAddresses.forEach(function (address) {
-
-        console.log('Starting 8-Ball for address: ', address);
-
-        // new conversation address, copy without conversationId
-        var newConversationAddress = Object.assign({}, address);
-        delete newConversationAddress.conversation;
-
-        // start survey dialog
-        bot.beginDialog(newConversationAddress, 'survey', null, function (err) {
-            if (err) {
-                // error ocurred while starting new conversation. Channel not supported?
-                bot.send(new builder.Message()
-                    .text('This channel does not support this operation: ' + err.message)
-                    .address(address));
-            }
-        });
-
-    });
-}, 1000);
 
 bot.dialog('survey', [
     function (session) {
