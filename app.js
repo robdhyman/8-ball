@@ -37,17 +37,34 @@ var answer;
 
 var userStore = [];
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.beginDialog("survey");
+    var message = session.message.text;
+    if (message) {
+        //go right to fortune dialog
+        session.beginDialog("fortune");
+        
+    } else {
+        //what would you ask of the 8 ball dialog
+        session.beginDialog("ask");
+    }
+    
+    
 });
 
-bot.dialog('survey', [
+bot.dialog('ask', [
+    //"Cortana, open 8-ball"
+
+    //
     function (session) {
         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
-    },
+    }
 
+]);
+
+bot.dialog('fortune', [
+  
+    //  "[user asks fortune"
     //8-ball is "shaken" and an answer is drawn at random
     function (session, results) {
-        session.userData.name = results.response;
         //builder.Prompts.number(session, 'Hmmm... ' + results.response);
         answer = answers[Math.floor(Math.random() * answers.length)];
         builder.Prompts.text(session, 'Hmmm... ' + answer);
