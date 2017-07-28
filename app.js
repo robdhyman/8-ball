@@ -42,7 +42,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
     // end current dialog
     session.send('You\'ve activated the 8-Ball, we will predict your future shortly...');
-    session.send(answers[x]);
+    session.send('It is certain');
 });
 
 
