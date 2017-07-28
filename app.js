@@ -22,28 +22,27 @@ var bot = new builder.UniversalBot(connector, function (session) {
 
 
     // store user's address
-    var address = session.message.address;
-    userStore.push(address);
+    //var address = session.message.address;
+    //userStore.push(address);
 
     // end current dialog
-    session.endDialog('You\'ve activated the 8-Ball, we will predict your future shortly...');
+    session.send('You\'ve activated the 8-Ball, we will predict your future shortly...');
 });
 
 // array of 8-ball answers, why are there so many more than eight?
 var answers = [
-  
-'It is certain',
-'It is decidedly so',
-'Without a doubt',
-'Yes definitely',
-'You may rely on it',
-'As I see it, yes',
-'Most likely',
-'Outlook good',
-'Yes',
-'Signs point to yes',
-'Better not tell you now',
-'It\'s.... Complicated',
+    'It is certain',
+    'It is decidedly so',
+    'Without a doubt',
+    'Yes definitely',
+    'You may rely on it',
+    'As I see it, yes',
+    'Most likely',
+    'Outlook good',
+    'Yes',
+    'Signs point to yes',
+    'Better not tell you now',
+    'It\'s.... Complicated',
 ];
 
 var answer;
