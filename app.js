@@ -57,7 +57,13 @@ bot.dialog('ask', [
         builder.Prompts.text(session, 'Hello, what would you ask of the 8-ball?');
     }
 
+    function (session, results) {
+        session.endDialog('Your fortune:', results.response);
+    }
+
+
 ]);
+
 
 bot.dialog('fortune', [
   
